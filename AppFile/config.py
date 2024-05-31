@@ -1,0 +1,5 @@
+DEBUG = True
+THREADED = True
+SECRET_KEY = 'ZEaNDKi4PYC3hQw40X0WthRtYaAyfbVS'
+
+ID = 0
