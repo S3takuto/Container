@@ -30,7 +30,8 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_06a69897da504d1b956b7ff63f209888 }}/ghcr.io/s3takuto/container/flask-app:${{ github.sha }}
+        tags: ghcr.io/s3takuto/container/flask-app:${{ github.sha }}
+        #tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_06a69897da504d1b956b7ff63f209888 }}/ghcr.io/s3takuto/container/flask-app:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
