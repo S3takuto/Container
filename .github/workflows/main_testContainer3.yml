@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy container app to Azure Web App - testContainer3m1
+name: Build and deploy container app to Azure Web App - testContainer3
 
 on:
   push:
@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://ghcr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_8be283791d9a494eb7d646cb7c6c5a93 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_b3866266c9ba4510abc93999c43f9ffd }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_94ca83cc33db4b9083f8d96c89b1f0ff }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_98438722951b4d3dbc0a89b75e26b825 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_8be283791d9a494eb7d646cb7c6c5a93 }}/ghcr.io/s3takuto/container/flask-app:${{ github.sha }}
+        tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_94ca83cc33db4b9083f8d96c89b1f0ff }}/s3takuto/container/flask-app:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -45,7 +45,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'testContainer3m1'
+        app-name: 'testContainer3'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_4337ba92d6d54bc29bd0ed98fc4b42d0 }}
-        images: 'ghcr.io/${{ secrets.AzureAppService_ContainerUsername_8be283791d9a494eb7d646cb7c6c5a93 }}/ghcr.io/s3takuto/container/flask-app:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_42990561f7eb48d9a93fa060bd892eaf }}
+        images: 'ghcr.io/${{ secrets.AzureAppService_ContainerUsername_94ca83cc33db4b9083f8d96c89b1f0ff }}/s3takuto/container/flask-app:${{ github.sha }}'
