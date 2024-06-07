@@ -9,10 +9,12 @@ RUN apt-get update && apt-get install -y \
     libglib2.0-0 \ 
     && rm -rf /var/lib/apt/lists
 
+RUN pip install gunicorn
+
 RUN pip install -r requirements.txt
 
 ENV FLASK_APP=application.py
 ENV FLASK_ENV=production
 
 EXPOSE 5000
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--timeout", "600", "application:app"]
