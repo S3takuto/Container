@@ -16,4 +16,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 ENV FLASK_APP=application.py
 ENV FLASK_ENV=production
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "application:app"]
+CMD ["gunicorn", "--bind=0.0.0.0:$PORT", "--timeout", "600", "application:app"]
