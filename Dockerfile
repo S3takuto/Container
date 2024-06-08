@@ -10,11 +10,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists
 
 #RUN pip install gunicorn
-
-RUN pip install -r requirements.txt
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 ENV FLASK_APP=application.py
 ENV FLASK_ENV=production
 
-EXPOSE 5000
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--timeout", "600", "application:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "application:app"]
