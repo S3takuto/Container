@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://ghcr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_b333be5b68ce4273b5497fce2af94fe3 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_da9f5814a8e34a71b2c54d4246043c4f }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_2f548de12c3f49789db298443790da7d }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_18b9b92d5c064dc6a47c55aac6a988dc }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_b333be5b68ce4273b5497fce2af94fe3 }}/ghcr.io/s3takuto/container/flask-app:${{ github.sha }}
+        tags: ghcr.io/${{ secrets.AzureAppService_ContainerUsername_2f548de12c3f49789db298443790da7d }}/ghcr.io/s3takuto/container/flask-app:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'testContainer3m1'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_860c2ca288034c4b976b2630e352205f }}
-        images: 'ghcr.io/${{ secrets.AzureAppService_ContainerUsername_b333be5b68ce4273b5497fce2af94fe3 }}/ghcr.io/s3takuto/container/flask-app:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_09f84e52970540d781d39f6d3907edac }}
+        images: 'ghcr.io/${{ secrets.AzureAppService_ContainerUsername_2f548de12c3f49789db298443790da7d }}/ghcr.io/s3takuto/container/flask-app:${{ github.sha }}'
